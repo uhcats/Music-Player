@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture {
+  width: 500px;
+  height: 300px;
+  border-radius: 30%;
+  margin-top: 10rem;
+}
+
+
+.fa-solid {
+  font-size: 50px;
+
+}
+
+.fa-solid.fa-stop {
+  display: none;
+}
