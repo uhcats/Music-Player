@@ -16,6 +16,12 @@
       "id": 2,
       "music": "./mp3/music1.mp3",
       "text": "Wintsdaer by kevin Smith",
+      "img": "./img/home.jpg"
+    },
+    {
+      "id": 3,
+      "music": "./mp3/music1.mp3",
+      "text": "Wintsdaer by kevasdasddasin Smith",
       "img": "../img/winter.jpg"
     }
   ]

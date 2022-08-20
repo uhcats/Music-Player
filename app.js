@@ -4,9 +4,13 @@ const text = document.getElementById('text');
 const liText = [...document.querySelectorAll('.li-text')];
 const btns = [...document.querySelectorAll('.choose')];
 const img = document.querySelector('img');
+const play = document.getElementById('play');
+const stop = document.getElementById('stop');
 
+const turnTrackBack = document.querySelector('#turnTrackBack');
+const turnTrackTop = document.querySelector('#turnTrackTop');
 
-
+let temp = -1;
 let tabText =  [];
 let tabMusic = [];
 let tabImg = [];
@@ -14,11 +18,53 @@ let tabImg = [];
 let chooseTrack =  false;
 
 
+function TurnTrackInformation(data) {
+  let myChoose = data[Number(temp)];
+  text.textContent = myChoose[0];
+  img.src = myChoose[1];
+  audio = new Audio(myChoose[2]);
+  audio.pause();
+}
+
+
+function TurnTrack(data) {
+  turnTrackTop.addEventListener('click', () => {
+    
+    ++temp;
+    if(temp !== data.length){
+      TurnTrackInformation(data);
+    }else if(temp === data.length){
+      temp = data.length - 1;
+      console.log(temp);
+      return;
+    }
+
+    
+    
+    
+  })
+
+  turnTrackBack.addEventListener('click', () => {
+   
+   
+    
+    if(temp <= 0) return;
+    else {
+      temp--;
+      TurnTrackInformation(data);
+      
+     
+    }
+    
+
+  })
+  
+}
+
+
+
+
 function playStop() {
-
-  const play = document.getElementById('play');
-  const stop = document.getElementById('stop');
-
   play.addEventListener('click', () => {
     audio.play();
     play.style.display = "none"
@@ -32,6 +78,7 @@ function playStop() {
 };
 
 function showInforamtion(data) {
+  TurnTrack(data);
   
   liText.forEach((li,index) => {
     li.textContent = tabText[index];
@@ -40,21 +87,25 @@ function showInforamtion(data) {
  btns.forEach((btn,index) => {
   btn.setAttribute('id', index);
   btn.addEventListener('click', (e) => {
-
+    temp = e.target.id;
+    stop.style.display = 'none';
+    play.style.display = 'block'
     audio.pause();
     let myChoose = data[e.target.id];
+
+
+    
+
     text.textContent = myChoose[0];
     img.src = myChoose[1];
     audio = new Audio(myChoose[2]);
-    console.log(myChoose);
+    
 
   })
  });
 
  
 }
-
-
 
 function showText(){
   fetch('music.json')
@@ -76,7 +127,6 @@ function showText(){
 showText();
 // showPicture();
 playStop();
-
 
   
 
