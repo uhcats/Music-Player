@@ -12,7 +12,7 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
   console.log('Server is listening at: http://localhost:3000');
   
 })
