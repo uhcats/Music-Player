@@ -34,3 +34,11 @@
 .fa-solid.fa-stop {
   display: none;
 }
+
+#bar {
+  font-size: 40px;
+}
+
+.musicTime {
+  font-size: 30px;
+}
