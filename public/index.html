@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+  
+
+  <div class="root">
+    <img src="./img/home.jpg" alt="picture" class = 'picture'>
+    <label for="file" class = 'musicTime'>Music time</label>
+    <progress id="bar" value="" max="100" maximum = ""></progress>
+    <h2 class = 'text' id ='text'></h2>
+    
+    <div class="audio">
+      <i class="fa-solid fa-backward-step" id ='turnTrackBack'></i>
+      <i class="fa-solid fa-play" id ='play'></i>
+      <i class="fa-solid fa-stop" id ='stop'></i>
+      <i class="fa-solid fa-forward-step" id ='turnTrackTop'></i>
+    </div>
+   
+
+    <div class="menu">
+      <ul>
+        <li class = 'li-text'></li> <button class = 'choose'>Wybierz</button>
+        <li class = 'li-text'></li><button class = 'choose'>Wybierz</button>
+        <li class = 'li-text'></li><button class = 'choose'>Wybierz</button>
+        <li class = 'li-text'></li><button class = 'choose'>Wybierz</button>
+      </ul>
+    </div>
+       
+  </div> 
+
+  <form action="" method = 'POST'>
+ <h2>Podaj login</h2> 
+  <input type="text" id ='login'>
+  <h2>Podaj password</h2>
+  <input type="password" id = 'password'>
+  <button type = 'submit'>Zaloguj się</button>
+
+      
+    </form>
+   
+  <script src = "app.js"></script>
+ 
+</body>
+</html>

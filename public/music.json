@@ -1,0 +1,28 @@
+{
+  "musicList": [
+    {
+      "id": 0,
+      "music": "./mp3/music1.mp3",
+      "text": "Winter by kevin Smith",
+      "img": "../img/winter.jpg"
+    },
+    {
+      "id": 1,
+      "music": "./mp3/music2.mp3",
+      "text": "Home by Stanisłąw Plust",
+      "img": "./img/home.jpg"
+    },
+    {
+      "id": 2,
+      "music": "./mp3/music1.mp3",
+      "text": "Wintsdaer by kevin Smith",
+      "img": "./img/home.jpg"
+    },
+    {
+      "id": 3,
+      "music": "./mp3/music1.mp3",
+      "text": "Wintsdaer by kevasdasddasin Smith",
+      "img": "../img/winter.jpg"
+    }
+  ]
+}
