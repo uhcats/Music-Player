@@ -1,9 +1,4 @@
-
-
-
 let audio = new Audio('');
-
-
 
 const text = document.getElementById('text');
 const liText = [...document.querySelectorAll('.li-text')];
@@ -11,8 +6,10 @@ const btns = [...document.querySelectorAll('.choose')];
 const img = document.querySelector('img');
 const play = document.getElementById('play');
 const stop = document.getElementById('stop');
-const bar = document.getElementById('bar');
 
+const hamburger = document.getElementById('barHamburger');
+
+const bar = document.getElementById('bar');
 
 const turnTrackBack = document.querySelector('#turnTrackBack');
 const turnTrackTop = document.querySelector('#turnTrackTop');
@@ -23,73 +20,71 @@ let tabMusic = [];
 let tabImg = [];
 
 let chooseTrack =  false;
-
-let temp1 = true;
-
 let timer = 0;
 
+let flagHamburger = false;
 
 
-function changeOn(){
-  play.style.display = "none";
-  stop.style.display = "block";
-}
-function changeOff(){
-  play.style.display = "block";
-  stop.style.display = "none";
-}
-function ShowBarStatus(){
+bar.addEventListener('click', function (e) {
+
+  if(!chooseTrack){
+    alert('You have to choose music');
+    return;
+  }
+  
+
+  let x = e.pageX - this.offsetLeft,
+      clickedValue = (x * this.max / this.offsetWidth).toFixed(0);
+
+      bar.value = clickedValue;
+      timer = clickedValue;
+      audio.currentTime = clickedValue;
+      
+      
+      
  
-  bar.addEventListener('click', function (e) {
+});
 
-    if(!chooseTrack){
-      alert('You have to choose music');
-      return;
-    }
-        
-    let x = e.pageX - this.offsetLeft,
-        clickedValue = (x * this.max / this.offsetWidth).toFixed(0);
-        
+hamburger.addEventListener('click', () => {
+  flagHamburger = !flagHamburger;
+  
+  document.querySelector('.menu').style.display = 'block';
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.menu').style.display = 'none'; 
+    })
+  })
+  if(!flagHamburger){
     
-        bar.value = clickedValue;
+    document.querySelector('.menu').style.display = 'none';
+  }
+  
+})
 
-        timer = clickedValue;
-        audio.currentTime = clickedValue;
 
-        
-        
-        
-   
-  });
-}
 function TurnTrackInformation(data) {
   let myChoose = data[Number(temp)];
   text.textContent = myChoose[0];
   img.src = myChoose[1];
   audio = new Audio(myChoose[2]);
   audio.pause();
-  changeOff();
+  stop.style.display = 'none';
+  play.style.display = 'block'
   bar.value = 0;
   timer = 0;
   chooseTrack = true;
- 
 }
-function TurnTrack(data) { 
+
+
+function TurnTrack(data) {
+ 
   turnTrackTop.addEventListener('click', () => {
-   
     audio.pause();
-    
-      
     ++temp;
     if(temp !== data.length)
       TurnTrackInformation(data);
     else if(temp === data.length){
-      temp = data.length - 1; 
-      console.log('teraz');
-
-      changeOff();
-
-      
+      temp = data.length - 1;  
       return;
     }
     
@@ -97,35 +92,33 @@ function TurnTrack(data) {
 
   turnTrackBack.addEventListener('click', () => {
     audio.pause();
-    if(temp <= 0){
-      changeOff();
-    }
+    if(temp <= 0) return;
     else {
       temp--;
       TurnTrackInformation(data);     
     }
   }) 
 }
-function playStop() {
-  
-  
+
+
+function playStop(data) {
+ 
+
+
   play.addEventListener('click', () => {
-    let time = Number(audio.duration.toFixed(0));
-    if(time){
-      console.log('texa');
-      bar.max = time;
-    }
     
+
     if(!chooseTrack){
       alert('You have to choose music');
       return;
-    } 
+    }
     
-   
     audio.play();
-    
-    
-   
+
+    let time = Number(audio.duration.toFixed(0));
+    bar.max = time;
+
+
     let timerBar = setInterval(() => {
       if(stop.style.display === "none")
         clearInterval(timerBar)
@@ -134,24 +127,33 @@ function playStop() {
           bar.value = timer++;
          else {
           bar.value = 0;
-          changeOff();
+          play.style.display = "block";
+          stop.style.display = "none";
+
         }
       }
     },1000);
-    changeOn();
+   
+   
+  
+    
+    
+    play.style.display = "none"
+    stop.style.display = "block"
   })
   stop.addEventListener('click', () => {
     audio.pause();
     
-   changeOff();
+    stop.style.display = "none"
+    play.style.display = "block"
   })
 
 
 
 };
+
 function showInforamtion(data) {
   TurnTrack(data);
-  
 
   liText.forEach((li,index) => {
     li.textContent = tabText[index];
@@ -160,14 +162,14 @@ function showInforamtion(data) {
  btns.forEach((btn,index) => {
   btn.setAttribute('id', index);
   btn.addEventListener('click', (e) => {
-
     chooseTrack = true;
     temp = e.target.id;
+    stop.style.display = 'none';
+    play.style.display = 'block';
     bar.value = 0;
     timer = 0;
     audio.pause();
     let myChoose = data[e.target.id];
-    changeOff();
 
 
     
@@ -183,6 +185,7 @@ function showInforamtion(data) {
 
  
 }
+
 function showText(){
   fetch('music.json')
   .then(res => res.json())
@@ -196,39 +199,6 @@ function showText(){
   .then(data => showInforamtion(data))
 }
 
-function run(){
-  ShowBarStatus();
-  playStop();
-  showText();
-}
+playStop();
 
-run();
-
-
-function generate(){
-  const inputLogin = document.getElementById('login');
-  const inputPass =  document.getElementById('password');
-const form = document.querySelector('form');
-
-
-form.addEventListener('submit',(e)=>{
-  e.preventDefault();
-   
-  const login = inputLogin.value;
-  const pass = inputPass.value;
-
-  fetch('/', {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      login,
-      pass,
-    })
-  })
-
-});
-}
-
-generate();
+showText();

@@ -2,21 +2,130 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 
 .root {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.player {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+
+  height: 75vh;
+  width: 60vw;
+  max-width: 640px;
+  margin-top: 5%;
+
+  -webkit-box-shadow: 7px 12px 35px 11px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 7px 12px 35px 11px rgba(66, 68, 90, 1);
+  box-shadow: 7px 12px 35px 11px rgba(66, 68, 90, 1);
+}
+
+.menu {
+
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto auto;
+
+  width: 600px;
+  height: 1000px;
+  background-color: rgb(224, 212, 212);
+  box-shadow: 7px 12px 35px 11px rgba(66, 68, 90, 1);
+  margin-top: -20%;
+}
+
+
+
+
+.li-text {
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.menu>ul {
+  margin-top: 60%;
+  list-style-type: none;
+}
+
+#barHamburger {
+  position: fixed;
+  z-index: 1000000;
+  top: 5%;
+  left: 5%;
+  font-size: 45px;
+  transition: .5s ease-in-out;
+}
+
+#barHamburger:hover {
+  color: #1f1817
 }
 
 .picture {
   width: 500px;
   height: 300px;
   border-radius: 30%;
-  margin-top: 10rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 1000px) {
+  .menu {
+    width: 700px;
+    height: 1200px;
+  }
+
+}
+
+@media (min-width: 1550px) {
+  .menu {
+    width: 1200px;
+    height: 1500px;
+  }
+
+}
+
+
+
+@media (max-width: 848px) {
+  .picture {
+    width: 400px;
+    height: 250px;
+  }
+
+
+}
+
+@media (max-width: 678px) {
+  .picture {
+    width: 290px;
+    height: 200px;
+  }
+
+  #bar {
+    width: 250px;
+  }
+}
+
+.playlist {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .audio {
@@ -41,4 +150,44 @@
 
 .musicTime {
   font-size: 30px;
+  font-weight: 500;
+}
+
+.choose {
+
+  margin: 0 auto;
+  min-width: 250px;
+  background: #1f1817;
+  border: 1px solid #1f1817;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  max-width: 400px;
+  outline: 0;
+  padding: 12px 20px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.choose:hover,
+.choose:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #1f1817;
+}
+
+.choose:active {
+  opacity: .5;
 }
